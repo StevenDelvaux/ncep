@@ -131,7 +131,7 @@ def createSlaterPlot(year, isSurface):
 	else:
 		printRegionalTemperature(matrix, axs, -30, 10, year, "NCEP reanalysis 925 mb temperature over Arctic Ocean (°C) 1979-2023")
 		
-	filename = "plot.png"
+	filename = "/tmp/plot.png"
 	fig.savefig(filename)
 	return send_file(filename, mimetype='image/png')
 
@@ -145,6 +145,6 @@ def createRegionalPlot(col, ymin, ymax, data, year, name, north = True):
 	matrix = padded.reshape((45,365))
 	
 	printRegionalTemperature(matrix, axs, ymin, ymax, year, name, north)
-	filename = "plot.png"
+	filename = "/tmp/plot.png"
 	fig.savefig(filename)
 	return send_file(filename, mimetype='image/png')
