@@ -127,9 +127,9 @@ def createSlaterPlot(year, isSurface):
 	matrix = matrix[:,1:]
 		
 	if isSurface:
-		printRegionalTemperature(matrix, axs, -40, 5, year, "NCEP reanalysis surface temperature over Arctic Ocean (°C) 1979-2023")
+		printRegionalTemperature(matrix, axs, -40, 5, year, "NCEP reanalysis surface temperature over Arctic Ocean (°C)")
 	else:
-		printRegionalTemperature(matrix, axs, -30, 10, year, "NCEP reanalysis 925 mb temperature over Arctic Ocean (°C) 1979-2023")
+		printRegionalTemperature(matrix, axs, -30, 10, year, "NCEP reanalysis 925 mb temperature over Arctic Ocean (°C)")
 		
 	filename = "/tmp/plot.png"
 	fig.savefig(filename)
