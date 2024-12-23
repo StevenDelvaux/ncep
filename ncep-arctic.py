@@ -801,12 +801,13 @@ def uploadToDropbox(filenames):
 def get_credentials(SCOPES):
 	creds = None
 	credentials_filename = "token.json"
-	google_drive_credentials = config('GOOGLE_DRIVE_CREDENTIALS')
-	with open(credentials_filename, "w") as local_file:
-		local_file.write(google_drive_credentials)
-	if os.path.exists(credentials_filename):
-		print('gonna get credentials from file')
-		creds = Credentials.from_authorized_user_file('token.json', SCOPES)
+	if not os.path.exists(credentials_filename):
+		google_drive_credentials = config('GOOGLE_DRIVE_CREDENTIALS')
+		with open(credentials_filename, "w") as local_file:
+			local_file.write(google_drive_credentials)
+	
+	creds = Credentials.from_authorized_user_file(credentials_filename, SCOPES)
+	
 	if not creds or not creds.valid:
 		print('credentials invalid')
 		if creds and creds.expired and creds.refresh_token:
