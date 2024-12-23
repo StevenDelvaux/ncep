@@ -1,3 +1,11 @@
+dropbox==11.36.0
 Flask==3.0.0
+google_api_python_client==2.77.0
 matplotlib==3.6.2
+netCDF4==1.7.2
 numpy==1.24.1
+opencv_python==4.7.0.72
+Pillow==10.1.0
+protobuf==5.29.2
+python-decouple==3.8
+Requests==2.32.3
