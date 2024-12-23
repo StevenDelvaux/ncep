@@ -3,7 +3,7 @@ name: Run Python Script Daily
 on:
   schedule:
     # Run at 16:00 a.m. UTC every day
-    - cron: '45 14 * * *'
+    - cron: '50 14 * * *'
 permissions:
   contents: write
 
@@ -16,6 +16,7 @@ jobs:
       APP_KEY: ${{ secrets.APP_KEY }}
       APP_SECRET: ${{ secrets.APP_SECRET }}
       OAUTH2_REFRESH_TOKEN: ${{ secrets.OAUTH2_REFRESH_TOKEN }}
+      GOOGLE_DRIVE_CREDENTIALS: ${{ secrets.GOOGLE_DRIVE_CREDENTIALS }}      
 
     steps:
     - name: Checkout repository
