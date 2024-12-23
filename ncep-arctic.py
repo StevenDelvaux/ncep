@@ -9,6 +9,7 @@ from PIL import Image
 from math import cos, sin, tan, pi, radians
 import cv2
 
+from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
@@ -799,8 +800,20 @@ def uploadToDropbox(filenames):
 		
 def get_credentials(SCOPES):
 	creds = None
-	if os.path.exists('token.json'):
+	credentials_filename = "token.json"
+	google_drive_credentials = config('GOOGLE_DRIVE_CREDENTIALS')
+	with open(credentials_filename, "w") as local_file:
+		local_file.write(google_drive_credentials)
+	if os.path.exists(credentials_filename):
+		print('gonna get credentials from file')
 		creds = Credentials.from_authorized_user_file('token.json', SCOPES)
+	if not creds or not creds.valid:
+		print('credentials invalid')
+		if creds and creds.expired and creds.refresh_token:
+			print('credentials try token refresh')
+			creds.refresh(Request())
+			with open(credentials_filename, 'w') as token:
+				token.write(creds.to_json())
 	return creds
 
 def replace_file_in_google_drive(file_id,local_path,prefix=''):
