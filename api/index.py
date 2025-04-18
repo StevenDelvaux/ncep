@@ -97,8 +97,8 @@ def plotTemperatureGraph(isSurface):
 def printRegionalTemperature(data, ax, ymin, ymax, year, name, north=True):
 	dates = np.arange(1,366)
 	
-	baseline = np.sum(data[1:30,:],axis=0)/30
-	tens = np.sum(data[31:44,:],axis=0)/12	
+	baseline = np.sum(data[1:31,:],axis=0)/30
+	tens = np.sum(data[31:45,:],axis=0)/14	
 	
 	ax.plot(dates, baseline, label='1980-2009 avg', linestyle='dashed', color=(0,0,0));
 	ax.plot(dates, tens, label='2010-2023 avg',  color=(0,0,0));
