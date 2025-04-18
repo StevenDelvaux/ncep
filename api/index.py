@@ -46,8 +46,8 @@ def plotTemperatureGraph(isSurface):
 	if not yearString.isdigit():
 		return "Invalid year", 400
 	year = int(yearString)	
-	if year < 1979 or year > 2023:
-		return "Year must be between 1979 and 2023", 400
+	if year < 1979 or year > 2024:
+		return "Year must be between 1979 and 2024", 400
 	
 	arcticRegions = [Region.slater, Region.cab, Region.beaufort, Region.chukchi, Region.ess, Region.laptev, Region.kara, Region.barents, Region.greenland, Region.baffin, Region.hudson, Region.caa, Region.bering, Region.okhotsk]
 	antarcticRegions = [Region.southern, Region.weddell, Region.bellamu, Region.ross, Region.pacific, Region.indian]
@@ -98,10 +98,10 @@ def printRegionalTemperature(data, ax, ymin, ymax, year, name, north=True):
 	dates = np.arange(1,366)
 	
 	baseline = np.sum(data[1:30,:],axis=0)/30
-	tens = np.sum(data[31:42,:],axis=0)/12	
+	tens = np.sum(data[31:44,:],axis=0)/12	
 	
 	ax.plot(dates, baseline, label='1980-2009 avg', linestyle='dashed', color=(0,0,0));
-	ax.plot(dates, tens, label='2010-2021 avg',  color=(0,0,0));
+	ax.plot(dates, tens, label='2010-2023 avg',  color=(0,0,0));
 	ax.plot(dates, data[year-1979,:], label=str(year), color=(1.0,0,0), linewidth=2);
 	
 	ax.set_ylabel("Temperature (°C)")
