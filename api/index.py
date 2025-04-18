@@ -141,8 +141,8 @@ def createRegionalPlot(col, ymin, ymax, data, year, name, north = True):
 	
 	regional = data[1:,col]
 	regional = np.array([i.lstrip() for i in regional]).astype(float)
-	padded = np.pad(regional, (0, 365*45 - regional.shape[0]), 'constant', constant_values=(np.nan,))
-	matrix = padded.reshape((45,365))
+	padded = np.pad(regional, (0, 365*46 - regional.shape[0]), 'constant', constant_values=(np.nan,))
+	matrix = padded.reshape((46,365))
 	
 	printRegionalTemperature(matrix, axs, ymin, ymax, year, name, north)
 	filename = "/tmp/plot.png"
